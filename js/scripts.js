@@ -10,7 +10,6 @@ var rollDie = function() {
   return Math.ceil(Math.random()*(6));
 }
 PlayerOne.prototype.scoreAccumulate = function(){
-
 this.currentRoll = rollDie();
   console.log(this.currentRoll)
 
@@ -24,11 +23,10 @@ this.turnScore.push(this.currentRoll);
 }
 
 PlayerOne.prototype.scoreCalculator = function(){
-  // var turnScoreSum = 0;
-  for (i=0; i<turnScore.length; i++){
+  for (i=0; i<this.turnScore.length; i++){
     this.turnScoreSum += this.turnScore[i];
     }
-    console.log(turnScoreSum);
+
   return this.turnScoreSum;
 }
 
@@ -48,14 +46,20 @@ $(document).ready(function(){
   //     console.log(newPlayerOne.name);
   //   });
 
-  $("#btn").click(function(event){
+  $("#play-button").click(function(event){
     event.preventDefault();
     newPlayerOne.scoreAccumulate();
-    newPlayerOne.scoreCalculator();
-    console.log(newPlayerOne.turnScore)
-    console.log(newPlayerOne.turnScoreSum)
+      console.log(newPlayerOne.turnScore)
+    // newPlayerOne.scoreCalculator();
+    // console.log(newPlayerOne.turnScoreSum)
 
 });
+
+  $("#hold-button").click(function(event){
+    event.preventDefault();
+    newPlayerOne.scoreCalculator();
+    console.log(newPlayerOne.turnScoreSum);
+  })
 
 
 
