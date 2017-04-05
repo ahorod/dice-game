@@ -63,7 +63,7 @@ $(document).ready(function(){
       console.log(newPlayerOne.turnScore)
     // newPlayerOne.scoreCalculator();
     // console.log(newPlayerOne.turnScoreSum)
-
+  $("#current-rolls h3").text(newPlayerOne.turnScore)
 });
 
   $("#hold-button").click(function(event){
@@ -74,7 +74,10 @@ $(document).ready(function(){
     console.log(newPlayerOne.turnScore);
     console.log(newPlayerOne.turnScoreSum);
     console.log(newPlayerOne.totalScore);
+    $("#grand-total h3").text(newPlayerOne.totalScore);
   })
+
+
 
 
 
