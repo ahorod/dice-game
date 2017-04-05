@@ -1,5 +1,5 @@
 //Buisness Logic
-function PlayerOne(name){
+function Player(name){
   this.name= name;
   this.currentRoll = 0;
   this.turnScore = [];
@@ -9,12 +9,13 @@ function PlayerOne(name){
 var rollDie = function() {
   return Math.ceil(Math.random()*(6));
 }
-PlayerOne.prototype.scoreAccumulate = function(){
+Player.prototype.scoreAccumulate = function(){
 this.currentRoll = rollDie();
   console.log(this.currentRoll)
 
   if (this.currentRoll===1){
     this.turnScore = [];
+    alert ("Next Person Turn");
   }else {
 this.turnScore.push(this.currentRoll);
 
@@ -22,15 +23,15 @@ this.turnScore.push(this.currentRoll);
   return this.turnScore;
 }
 
-PlayerOne.prototype.scoreCalculator = function(){
+Player.prototype.scoreCalculator = function(){
   for (i=0; i<this.turnScore.length; i++){
     this.turnScoreSum += this.turnScore[i];
     }
-
+    alert("Next Person Turn");
   return this.turnScoreSum;
 }
 
-PlayerOne.prototype.setTotalScore = function(){
+Player.prototype.setTotalScore = function(){
     this.totalScore += this.turnScoreSum;
     this.turnScore = [];
     this.turnScoreSum = 0;
@@ -40,11 +41,8 @@ PlayerOne.prototype.setTotalScore = function(){
 
 
 
-
-
-
-var newPlayerOne = new PlayerOne("Kaytlin");
-var newPlayerTwo = new PlayerOne("Anna");
+var newPlayerOne = new Player("Kaytlin");
+var newPlayerTwo = new Player("Anna");
 
 
 
@@ -63,7 +61,16 @@ $(document).ready(function(){
       console.log(newPlayerOne.turnScore)
     // newPlayerOne.scoreCalculator();
     // console.log(newPlayerOne.turnScoreSum)
-  $("#current-rolls h3").text(newPlayerOne.turnScore)
+  $("#current-rolls h3").text(newPlayerOne.turnScore);
+
+});
+$("#play-button-2").click(function(event){
+  event.preventDefault();
+  newPlayerTwo.scoreAccumulate();
+  console.log(newPlayerTwo.turnScore)
+  // newPlayerOne.scoreCalculator();
+  // console.log(newPlayerOne.turnScoreSum)
+$("#current-rolls h3").text(newPlayerTwo.turnScore)
 });
 
   $("#hold-button").click(function(event){
@@ -74,7 +81,17 @@ $(document).ready(function(){
     console.log(newPlayerOne.turnScore);
     console.log(newPlayerOne.turnScoreSum);
     console.log(newPlayerOne.totalScore);
-    $("#grand-total h3").text(newPlayerOne.totalScore);
+    $("#grand-total-player1 h3").text(newPlayerOne.totalScore);
+  })
+  $("#hold-button-2").click(function(event){
+    event.preventDefault();
+    newPlayerTwo.scoreCalculator();
+    newPlayerTwo.setTotalScore();
+
+    console.log(newPlayerTwo.turnScore);
+    console.log(newPlayerTwo.turnScoreSum);
+    console.log(newPlayerTwo.totalScore);
+    $("#grand-total-player2 h3").text(newPlayerTwo.totalScore);
   })
 
 
