@@ -30,6 +30,17 @@ PlayerOne.prototype.scoreCalculator = function(){
   return this.turnScoreSum;
 }
 
+PlayerOne.prototype.setTotalScore = function(){
+    this.totalScore += this.turnScoreSum;
+    this.turnScore = [];
+    this.turnScoreSum = 0;
+
+  return this.totalScore;
+}
+
+
+
+
 
 
 var newPlayerOne = new PlayerOne("Kaytlin");
@@ -58,7 +69,11 @@ $(document).ready(function(){
   $("#hold-button").click(function(event){
     event.preventDefault();
     newPlayerOne.scoreCalculator();
+    newPlayerOne.setTotalScore();
+
+    console.log(newPlayerOne.turnScore);
     console.log(newPlayerOne.turnScoreSum);
+    console.log(newPlayerOne.totalScore);
   })
 
 
