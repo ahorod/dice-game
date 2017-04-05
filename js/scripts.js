@@ -3,22 +3,36 @@ function PlayerOne(name){
   this.name= name;
   this.currentRoll = 0;
   this.turnScore = [];
+  this.turnScoreSum = 0;
   this.totalScore = 0;
 }
 var rollDie = function() {
   return Math.ceil(Math.random()*(6));
 }
-PlayerOne.prototype.scoreCalculator = function(){
+PlayerOne.prototype.scoreAccumulate = function(){
+
 this.currentRoll = rollDie();
   console.log(this.currentRoll)
 
   if (this.currentRoll===1){
-    this.turnScore.push(0);
+    this.turnScore = [];
   }else {
 this.turnScore.push(this.currentRoll);
-  }
+
+}
   return this.turnScore;
 }
+
+PlayerOne.prototype.scoreCalculator = function(){
+  // var turnScoreSum = 0;
+  for (i=0; i<turnScore.length; i++){
+    this.turnScoreSum += this.turnScore[i];
+    }
+    console.log(turnScoreSum);
+  return this.turnScoreSum;
+}
+
+
 
 var newPlayerOne = new PlayerOne("Kaytlin");
 var newPlayerTwo = new PlayerOne("Anna");
@@ -36,10 +50,14 @@ $(document).ready(function(){
 
   $("#btn").click(function(event){
     event.preventDefault();
+    newPlayerOne.scoreAccumulate();
     newPlayerOne.scoreCalculator();
-    console.log(PlayerOne.turnScore)
+    console.log(newPlayerOne.turnScore)
+    console.log(newPlayerOne.turnScoreSum)
 
 });
+
+
 
 
 });
